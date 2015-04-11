@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - "nodes/%{::fqdn}"
+  - "%{::osfamily}"
+  - common
+
+:yaml:
+  :datadir: "/etc/puppet/hieradata"
