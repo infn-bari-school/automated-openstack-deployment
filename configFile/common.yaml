@@ -1,9 +1,12 @@
 ---
 default:
   - ntp
+  - timezone
 
 ntp::autoupdate: true
 ntp::enable: true
 ntp::servers:
   - ntp.cnaf.infn.it iburst
   - pool.ntp.org
+
+timezone::timezone: 'Europe/Rome'
