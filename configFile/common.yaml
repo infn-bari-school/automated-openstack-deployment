@@ -1,0 +1,9 @@
+---
+classes:
+  - ntp
+
+ntp::autoupdate: true
+ntp::enable: true
+ntp::servers:
+  - ntp.cnaf.infn.it iburst
+  - pool.ntp.org
