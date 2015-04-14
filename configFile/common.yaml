@@ -1,5 +1,5 @@
 ---
-classes:
+default:
   - ntp
 
 ntp::autoupdate: true
