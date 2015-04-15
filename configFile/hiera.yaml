@@ -3,6 +3,7 @@
   - yaml
 :hierarchy:
   - "nodes/%{::fqdn}"
+  - "%{::environment}"
   - "%{::osfamily}"
   - common
 
