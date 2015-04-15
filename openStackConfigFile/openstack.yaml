@@ -1,3 +1,4 @@
+---
 password: 'openstack_recas'
 openstack::region: 'Recas-Bari'
 controller_ip: '90.147.169.32'
