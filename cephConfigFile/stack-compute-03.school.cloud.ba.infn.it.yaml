@@ -1,4 +1,4 @@
-ph_mon:
+ceph_mon:
   'stack-compute-01':
     key: 'AQBxkvVU4F+VDBAArxUf+8s0LbxIxNrbyEC1kw=='
 ceph_key:
