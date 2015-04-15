@@ -1,0 +1,142 @@
+password: 'openstack_recas'
+openstack::region: 'Recas-Bari'
+controller_ip: '90.147.169.32'
+controller_subnet: '90.147.169.0/24'
+controller_subnet: '90.147.169.1'
+
+######## Networks
+
+openstack::network::api: '%{hiera('controller_subnet')}'
+openstack::network::external: '%{hiera('controller_subnet')}'
+openstack::network::management: '%{hiera('controller_subnet')}'
+openstack::network::data: '%{hiera('controller_subnet')}'
+openstack::network::external::ippool::start: 212.189.205.189
+openstack::network::external::ippool::end: 212.189.205.190
+openstack::network::external::gateway: '%{hiera('controller_gw')}'
+openstack::network::external::dns: 8.8.8.8
+openstack::network::neutron::enable_lb: 'True'
+openstack::config::network_management: '%{hiera('controller_subnet')}'
+
+######## Private Neutron Network
+
+openstack::network::neutron::private: '10.0.1.0/24'
+
+
+######## Fixed IPs (controllers)
+
+openstack::network::address::api: '%{hiera('controller_ip')}'
+openstack::network::address::management: '%{hiera('controller_ip')}'
+openstack::controller::address::api: '%{hiera('controller_ip')}'
+openstack::controller::address::management: '%{hiera('controller_ip')}'
+openstack::storage::address::api: '%{hiera('controller_ip')}'
+openstack::storage::address::management: '%{hiera('controller_ip')}'
+
+######## Database
+
+openstack::mysql::root_password: 'cloud'
+openstack::mysql::service_password: "%{hiera('password')}"
+openstack::mysql::allowed_hosts: ['localhost', '127.0.0.1', '%']
+mysql::params::max_connections: '500'
+
+openstack::glance::api_servers: ['%{hiera('controller_ip')}':9292']
+
+######## RabbitMQ
+
+openstack::rabbitmq::hosts: ['%{hiera('controller_ip')}']
+openstack::rabbitmq::user: 'cloud'
+openstack::rabbitmq::password: "%{hiera('password')}"
+
+######## Keystone
+
+openstack::keystone::admin_token: 'd50ff4a17e606aa38e38'
+openstack::keystone::admin_email: 'alessandro.italiano@ba.infn.it'
+openstack::keystone::admin_password: "%{hiera('password')}"
+
+openstack::keystone::tenants:
+    "Recas":
+        description: "Recas default tenant"
+    "test":
+        description: "tenant for test"
+
+openstack::keystone::users:
+    "italiano":
+        password: "%{hiera('password')}"
+        tenant: "Recas"
+        email: "alessandro.italiano@ba.infn.it"
+        admin: true
+
+######## Glance
+
+openstack::glance::password: "%{hiera('password')}"
+
+######## Cinder
+
+openstack::cinder::password: "%{hiera('password')}"
+openstack::cinder::volume_size: '5G'
+
+######## Swift
+
+openstack::swift::password: "%{hiera('password')}"
+openstack::swift::hash_suffix: 'infn-bari'
+
+
+######## Nova
+
+openstack::nova::libvirt_type: 'kvm'
+openstack::nova::password: "%{hiera('password')}"
+
+######## Neutron
+
+openstack::neutron::password: "%{hiera('password')}"
+openstack::neutron::shared_secret: "%{hiera('password')}"
+openstack::neutron::core_plugin: 'ml2'
+openstack::neutron::service_plugins: ['router', 'firewall', 'lbaas', 'vpnaas', 'metering']
+
+######## Ceilometer
+
+openstack::ceilometer::address::management: '%{hiera('controller_ip')}'
+openstack::ceilometer::mongo::username: 'mongo'
+openstack::ceilometer::mongo::password: "%{hiera('password')}"
+openstack::ceilometer::meteringsecret: "%{hiera('password')}"
+openstack::ceilometer::password: "%{hiera('password')}"
+
+######## Heat
+
+openstack::heat::password: "%{hiera('password')}"
+openstack::heat::encryption_key: "33a9b28012844552468d4207cfa87afc"
+
+
+######## Horizon
+
+openstack::horizon::secret_key: '33a9b28012844552468d4207cfa87afc'
+
+######## Tempest
+
+
+openstack::config::tempest_username_admin       : ['italiano']
+openstack::tempest::username                    : ['italiano']
+openstack::tempest::alt                                 : 'Ubuntu'
+openstack::tempest::configure_images    : true
+openstack::tempest::image_name          : 'Cirros'
+openstack::tempest::image_name_alt      : 'Cirros'
+openstack::tempest::username            : 'demo'
+openstack::tempest::username_alt        : 'demo2'
+openstack::tempest::username_admin      : 'test'
+openstack::tempest::configure_network   : false
+openstack::tempest::public_network_name : 'public'
+openstack::tempest::cinder_available    : true
+openstack::tempest::glance_available    : true
+openstack::tempest::horizon_available   : true
+openstack::tempest::nova_available      : true
+openstack::tempest::neutron_available   : true
+openstack::tempest::heat_available      : true
+openstack::tempest::swift_available     : false
+
+######## Log levels
+openstack::verbose: 'True'
+openstack::debug: 'True'
+
+
+mysql::params::root_password: "%{hiera('password')}"
+mysql::params::old_root_password: "%{hiera('password')}"
+
