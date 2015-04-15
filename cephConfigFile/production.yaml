@@ -1,7 +1,5 @@
 ---
 stack-compute:
-    - ceph
-    - ceph::repo
     - ceph::profile::base
     - ceph::profile::client
     
