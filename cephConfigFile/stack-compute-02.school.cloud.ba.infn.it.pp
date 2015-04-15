@@ -1,6 +1,6 @@
 node 'stack-compute-02.school.cloud.ba.infn.it' {
 
-  hiera_include('classes')
+
   hiera_include('stack-compute')
 
   
