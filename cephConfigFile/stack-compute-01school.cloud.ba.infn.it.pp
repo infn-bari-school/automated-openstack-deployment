@@ -1,4 +1,4 @@
-node 'stack-compute-01.ba.infn.it' {
+node 'stack-compute-01.school.cloud.ba.infn.it' {
 
   hiera_include('classes')
   hiera_include('stack-compute')
