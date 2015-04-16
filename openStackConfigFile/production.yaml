@@ -12,5 +12,5 @@ ceph::mon_initial_members: 'stack-compute-03,stack-compute-02,stack-compute-01'
 ceph::mon_host: '90.147.169.29,90.147.169.28,90.147.169.27'
 
 ceph_osd:
-  '/dev/vdc':
+  '/dev/vdb':
     journal: '/data1'
