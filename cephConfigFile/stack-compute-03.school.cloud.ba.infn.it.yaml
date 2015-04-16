@@ -1,5 +1,5 @@
 ceph_mon:
-  'stack-compute-01':
+  'stack-compute-03':
     key: 'AQBxkvVU4F+VDBAArxUf+8s0LbxIxNrbyEC1kw=='
 ceph_key:
   'client.admin':
