@@ -2,7 +2,8 @@
 default:
   - ntp
   - timezone
-
+  - puppet::agent
+  
 ntp::autoupdate: true
 ntp::enable: true
 ntp::servers:
@@ -10,3 +11,11 @@ ntp::servers:
   - pool.ntp.org
 
 timezone::timezone: 'Europe/Rome'
+
+puppet::agent::puppet_server: puppetmaster.school.cloud..ba.infn.it
+puppet::agent::report: true
+puppet::agent::puppet_run_interval: 5
+puppet::agent::environment: production
+puppet::agent::listen: false
+
+
