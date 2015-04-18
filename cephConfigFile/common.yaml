@@ -1,0 +1,36 @@
+---
+default:
+  - ntp
+  - timezone
+  - puppet::agent
+
+ntp::autoupdate: true
+ntp::enable: true
+ntp::servers:
+  - ntp.cnaf.infn.it iburst
+  - pool.ntp.org
+
+timezone::timezone: 'Europe/Rome'
+
+
+puppet::agent::puppet_server: puppetmaster.school.cloud.ba.infn.it
+puppet::agent::report: true
+puppet::agent::puppet_run_interval: 5
+puppet::agent::environment: production
+
+cloud_school_hosts:
+  'puppetmaster.school.cloud.ba.infn.it':
+    ip: '172.20.0.46'
+    host_aliases: ['puppetmaster']
+  'stack-compute-01.school.cloud.ba.infn.it':
+    ip: '172.20.0.53'
+    host_aliases: ['stack-compute-01']
+  'stack-compute-02.school.cloud.ba.infn.it':
+    ip: '172.20.0.54'
+    host_aliases: ['stack-compute-08']
+  'stack-compute-03.school.cloud.ba.infn.it':
+    ip: '90.147.169.29'
+    host_aliases: ['stack-compute-03']
+  'stack-controller.school.cloud.ba.infn.it':
+    ip: '90.147.169.44'
+    host_aliases: ['stack-controller']
