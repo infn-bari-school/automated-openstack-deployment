@@ -96,7 +96,7 @@ openstack::neutron::service_plugins: ['router', 'firewall', 'lbaas', 'vpnaas', '
 
 ######## Ceilometer
 
-openstack::ceilometer::address::management: '%{hiera('controller_ip')}'
+openstack::ceilometer::address::management: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
 openstack::ceilometer::mongo::username: 'mongo'
 openstack::ceilometer::mongo::password: "%{hiera('password')}"
 openstack::ceilometer::meteringsecret: "%{hiera('password')}"
