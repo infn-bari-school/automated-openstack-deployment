@@ -1,22 +1,23 @@
 ---
+stack-controller:
+    - openstack::role::allinone
+    
 password: 'openstack_recas'
 openstack::region: 'Recas-Bari'
-controller_ip: '90.147.169.32'
-controller_subnet: '90.147.169.0/24'
-controller_subnet: '90.147.169.1'
+
 
 ######## Networks
 
-openstack::network::api: '%{hiera('controller_subnet')}'
-openstack::network::external: '%{hiera('controller_subnet')}'
-openstack::network::management: '%{hiera('controller_subnet')}'
-openstack::network::data: '%{hiera('controller_subnet')}'
-openstack::network::external::ippool::start: 212.189.205.189
-openstack::network::external::ippool::end: 212.189.205.190
-openstack::network::external::gateway: '%{hiera('controller_gw')}'
+openstack::network::api: 172.20.0.0/16
+openstack::network::external: 172.20.0.0/16
+openstack::network::management: 172.20.0.0/16
+openstack::network::data: 172.20.0.0/16
+openstack::network::external::ippool::start: 172.20.101.10
+openstack::network::external::ippool::end: 172.20.101.30
+openstack::network::external::gateway: 172.20.0.0/16
 openstack::network::external::dns: 8.8.8.8
 openstack::network::neutron::enable_lb: 'True'
-openstack::config::network_management: '%{hiera('controller_subnet')}'
+openstack::config::network_management: 172.20.0.0/16
 
 ######## Private Neutron Network
 
@@ -25,12 +26,12 @@ openstack::network::neutron::private: '10.0.1.0/24'
 
 ######## Fixed IPs (controllers)
 
-openstack::network::address::api: '%{hiera('controller_ip')}'
-openstack::network::address::management: '%{hiera('controller_ip')}'
-openstack::controller::address::api: '%{hiera('controller_ip')}'
-openstack::controller::address::management: '%{hiera('controller_ip')}'
-openstack::storage::address::api: '%{hiera('controller_ip')}'
-openstack::storage::address::management: '%{hiera('controller_ip')}'
+openstack::network::address::api: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
+openstack::network::address::management: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
+openstack::controller::address::api: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
+openstack::controller::address::management: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
+openstack::storage::address::api: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
+openstack::storage::address::management: PRIVATE-CONTROLLER-IP-ADDRESS-HERE
 
 ######## Database
 
@@ -39,11 +40,11 @@ openstack::mysql::service_password: "%{hiera('password')}"
 openstack::mysql::allowed_hosts: ['localhost', '127.0.0.1', '%']
 mysql::params::max_connections: '500'
 
-openstack::glance::api_servers: ['%{hiera('controller_ip')}':9292']
+openstack::glance::api_servers: ['PRIVATE-CONTROLLER-IP-ADDRESS-HERE:9292']
 
 ######## RabbitMQ
 
-openstack::rabbitmq::hosts: ['%{hiera('controller_ip')}']
+openstack::rabbitmq::hosts: ['PRIVATE-CONTROLLER-IP-ADDRESS-HERE']
 openstack::rabbitmq::user: 'cloud'
 openstack::rabbitmq::password: "%{hiera('password')}"
 
