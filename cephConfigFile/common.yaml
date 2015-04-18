@@ -31,6 +31,4 @@ cloud_school_hosts:
   'stack-compute-03.school.cloud.ba.infn.it':
     ip: '90.147.169.29'
     host_aliases: ['stack-compute-03']
-  'stack-controller.school.cloud.ba.infn.it':
-    ip: '90.147.169.44'
-    host_aliases: ['stack-controller']
+
