@@ -49,5 +49,5 @@ CgkQ2kQg7SiJlcjJIACgsGpIw9ShLBciO3Y349ja7ILjC8cAnRrqoIpFxUrSIJF/
     content => $ale,
 
 }
-  File['/root/ceph_repo_key'] -> Apt::Key['ceph'] -> Ceph::Key['ceph_key'] -> Ceph::Mon['ceph_mon'] -> Ceph::Osd['ceph_osd']
+  File['/root/ceph_repo_key'] -> Apt::Key['ceph']
 }
