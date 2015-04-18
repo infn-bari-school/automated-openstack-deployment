@@ -3,9 +3,6 @@ stack-compute:
     - ceph::profile::base
     - ceph::profile::client
 
-stack-controller:
-    - openstack::role::allinone
-    
 
 ceph::fsid: 'f65809d3-7961-4cd7-b731-a9bc94bc6e9c'
 ceph::mon_initial_members: 'stack-compute-03,stack-compute-02,stack-compute-01'
