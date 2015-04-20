@@ -1,0 +1,21 @@
+---
+stack-ceph:
+    - ceph::profile::base
+    - ceph::profile::client
+    
+stack-compute:
+  - openstack::role::compute
+  - ceph::profile::base
+  - ceph::profile::client
+  - secret
+  - migration
+  
+ceph::fsid: 'f65809d3-7961-4cd7-b731-a9bc94bc6e9c'
+ceph::mon_initial_members: 'stack-compute-01,stack-compute-02,stack-compute-03'
+ceph::mon_host: '172.20.0.67,172.20.0.68,172.20.0.69'
+
+ceph_osd:
+  '/dev/vdb':
+    journal: '/data1'
+  '/dev/vdc':
+    journal: '/data2'
