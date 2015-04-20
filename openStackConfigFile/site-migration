@@ -1,0 +1,118 @@
+import 'nodes/*.pp'
+
+hiera_include('default')
+
+$hosts = hiera('cloud_school_hosts')
+create_resources(host, $hosts)
+
+node default {
+
+}
+
+class migration {
+
+  User['nova'] -> File['/var/lib/nova/.ssh/id_rsa'] -> File['/var/lib/nova/.ssh/authorized_keys']
+
+  user { 'nova':
+    ensure => present,
+    shell => '/bin/bash'
+  }
+
+  file { '/var/lib/nova/.ssh':
+    ensure => 'directory',
+    owner => 'nova',
+    group => 'nova'
+  }
+
+  $key = "-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA4CSYfCzk8t9KxRboum3XE26z4eKGmR7SD23QoLsYlGR6P8aV
+q8Vxp9KkIP69p+S8Y841zNkUo5JKcmTecf/bVqkbVM2dEKdlwP4e6P/sDP7ZNOK1
+mPOh02KYn81UbMTPN10hCpAwEnGQkATofpFQKV2i9vXDro3rFogz52PQ0D+eISrB
+tUJl6hrwsH2elKczB7qQGjCe1sNWva8XsT8BNy8re/YdvHaEH658/43n08ljtbxz
+JWNEDGeXuOIze39Zg2wtX2LnyUFkI/kaj3RGQcfHfaM+o3jdJC7tYUZXBXUwd2M1
+tu1c5sh1Q7Zg/5gxqIPFR0+1pBD3O36pikPB0wIDAQABAoIBABccDtC2vEBCP25E
+p2gZTRSG1GsUtPXylIvcsabww18BYQ1URzg3mjlIYX25Zgp6beYIa8mcFCGtQpm6
+xqiQTagItXWv4WLHL5mPWdaCFG9ekzx9p2WGsQefYccQH4U7YXX+1xpEtYAhT1tZ
+9jKeftpU+ilmO2+y2CsxjdBsnSnrQ9eV4YDgf4GocDp7KfEitVwDGqtPIzBZCxDU
+cqc1YKKnfQS3e3YMRpKfRPsdZgMj19Qi+Xv8Ta4cRyJQc0gkImkWzzrWtZ43VIAa
+k6E74KJXk3RmHLcUR65S9y9abppRKC+Pqko7T4+g8Yxx6dps6KuTg+4Ni5VSaJv1
+lywr/2ECgYEA8gtdLWHXpTur+//dCiA+guMEsJxtAoVbaipmf+EAIZRqwKX/Mbll
+wkbT2eow6CsEk0dtk2KQ804GecFIbXbUd9K3smmAOxSd+9ShvUQcd7UIyilLPnd+
+UNEOfUchUqDp1eMOVpZzZDgdr0pyX3CYmvHnEUI8ZFQLur9fA8BF7fECgYEA7REA
+fuQk1li8ZoEj9GkEr7y7YO8qh50OiKxOovcUB5rh1GsHjCOBosiutB4tLlCwF2Sx
+PfyRniFg9MzEQn3GeuU1IZloDmFT2zQiv/8FJKhlNLh+mlNEb6jW9NhGNR/db2PN
+7M7O2Ge5ZA9WB2FaoG6LchNXOWlA1aWGsbt5eAMCgYEA19RoTtprV4yhLIGYUbo0
+47OZb/7ceZ3+yOlsIuW4nzjgBE9BAs7mPVm4+R0KZUxOtSHBROZkiIBv58wBUJLg
+nMRKR44p6QTWZ0PQwZtloxzL7LDrxpT5DwmL2Qw/W5XfTXk9RNq9pIUhezhwSkh1
+29yPBeXBQllraCfTit29vZECgYEAmyRaR7B0bxYpTYfMCOJFX+DKW7iJA7ED1uu0
+lq/NmuCAU+wrR0nhR6+/rT5mYP4LD3QlDiThAzRi6DGtaro3Dyw7Jh7n2ylUoIqx
+BycUrZXKjcMDj2lYyx4adqem4pNU7dXJ6OS6tyLCT7o9mZzbm0xc063WkkrQVED8
+Mgo3hxMCgYBXAnAkQUgQP+gEpaS+GTKU1wcP2Ni373ygtBnL6m7VJkgFSlPKGySC
+k/sAK8m/7+yTGEa88ha+GC0yBpi2uH0YTO5x9gLwcqo9H5hnxSzxJZmHQmrQBO0E
+UWGhDuimknHrQlBPQTa8Mrq8J7TfQeW9KbB7LPidCVu5mCR/NB2dhA==
+-----END RSA PRIVATE KEY-----"
+
+  file { '/var/lib/nova/.ssh/id_rsa':
+    ensure => present,
+    content => $key,
+    owner => 'nova',
+    group => 'nova',
+    mode => '400'
+  }
+
+  $pub = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgJJh8LOTy30rFFui6bdcTbrPh4oaZHtIPbdCguxiUZHo/xpWrxXGn0qQg/r2n5LxjzjXM2RSjkkpyZN5x/9tWqRtUzZ0Qp2XA/h7o/+wM/tk04rWY86HTYpifzVRsxM83XSEKkDAScZCQBOh+kVApXaL29cOujesWiDPnY9DQP54hKsG1QmXqGvCwfZ6UpzMHupAaMJ7Ww1a9rxexPwE3Lyt79h28doQfrnz/jefTyWO1vHMlY0QMZ5e44jN7f1mDbC1fYufJQWQj+RqPdEZBx8d9oz6jeN0kLu1hRlcFdTB3YzW27VzmyHVDtmD/mDGog8VHT7WkEPc7fqmKQ8HT root@stackcn-01"
+
+  file { '/var/lib/nova/.ssh/authorized_keys':
+    ensure => present,
+    content => $pub,
+    owner => 'nova',
+    group => 'nova',
+    mode => '644'
+  }
+
+  $ssh_config = 'StrictHostKeyChecking no'
+
+  file { '/var/lib/nova/.ssh/config':
+    ensure => present,
+    content => $ssh_config,
+    owner => 'nova',
+    group => 'nova'
+  }
+}
+
+
+class secret {
+
+
+  File['/root/secret.xml'] -> File['/root/client.cinder'] -> Exec[secreteDefine] -> Exec[secreteSetValue]
+
+  $secret = "<secret ephemeral='no' private='no'>
+      <uuid>457eb676-33da-42ec-9a8c-9293d545c337</uuid>
+      <usage type='ceph'>
+        <name>client.cinder secret</name>
+      </usage>
+    </secret>"
+
+  file { '/root/secret.xml':
+    ensure => present,
+    content =>  $secret
+  }
+  
+  file { '/root/client.cinder':
+    ensure => present,
+    content =>  'AQAvxQpVKJ03KxAADFv78tedrAWZx1SoRdsQUA=='
+  }
+
+  exec { 'secreteDefine':
+    path => ['/usr/bin', '/usr/sbin'],
+    command => '/bin/touch /root/secreteDefine; virsh secret-define --file /root/secret.xml',
+    creates => '/root/secreteDefine'
+  }
+
+  exec { 'secreteSetValue':
+    path => ['/usr/bin', '/usr/sbin'],
+    command => '/bin/touch /root/secreteSetValue;  virsh secret-set-value --secret 457eb676-33da-42ec-9a8c-9293d545c337 --base64 AQAvxQpVKJ03KxAADFv78tedrAWZx1SoRdsQUA==',
+    creates => '/root/secreteSetValue'
+  }
+
+}
