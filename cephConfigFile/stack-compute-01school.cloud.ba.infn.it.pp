@@ -1,6 +1,6 @@
-node 'stack-compute-01.school.cloud.ba.infn.it' {
+node 'ceph01.school.cloud.ba.infn.it' {
 
-  hiera_include('stack-compute')
+  hiera_include('stack-ceph')
 
   
   $mon = hiera('ceph_mon')
