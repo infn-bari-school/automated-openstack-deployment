@@ -1,5 +1,5 @@
 ---
-stack-compute:
+stack-ceph:
     - ceph::profile::base
     - ceph::profile::client
 
