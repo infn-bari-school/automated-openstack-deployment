@@ -4,6 +4,7 @@ node 'stack-compute.school.cloud.ba.infn.it' {
   
 $ceph_key_repo = "-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1.4.11 (GNU/Linux)
+
 mQINBE+5bugBEADP31ZaQNvhOOQxjDwL/VYDLhtaGq4Q74FCY23uSQAMboKwo4JB
 Te2JTSwBwU/RAPuWTrlKaQBPS30VF5SJN9t16llmoBWqhtBVf/lhQonC/28dTB6D
 KR7Ahiz4Nv2g9m1sLau86JblQuODo8vWHXxahYSLQSyyxIXnlE4K3c1k0S4feLqu
