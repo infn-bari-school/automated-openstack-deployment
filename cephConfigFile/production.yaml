@@ -5,8 +5,8 @@ stack-ceph:
 
 
 ceph::fsid: 'f65809d3-7961-4cd7-b731-a9bc94bc6e9c'
-ceph::mon_initial_members: 'stack-compute-01,stack-compute-02,stack-compute-03'
-ceph::mon_host: '172.20.0.57,172.20.0.58,172.20.0.59'
+ceph::mon_initial_members: 'ceph01,ceph02,ceph03'
+ceph::mon_host: '172.20.0.74,172.20.0.75,172.20.0.76'
 
 ceph_osd:
   '/dev/vdb':
