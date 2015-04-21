@@ -14,7 +14,7 @@ openstack::network::management: 172.20.0.0/16
 openstack::network::data: 172.20.0.0/16
 openstack::network::external::ippool::start: 172.20.101.10
 openstack::network::external::ippool::end: 172.20.101.30
-openstack::network::external::gateway: 172.20.0.0/16
+openstack::network::external::gateway: 172.20.0.1
 openstack::network::external::dns: 8.8.8.8
 openstack::network::neutron::enable_lb: 'True'
 openstack::config::network_management: 172.20.0.0/16
