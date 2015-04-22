@@ -1,8 +1,31 @@
-
 stack-compute:
   - openstack::role::compute
   - ceph::profile::base
   - ceph::profile::client
   - secret
   - migration
-  
+
+
+nova_config:
+  DEFAULT/rbd_user:
+    value: cinder
+  DEFAULT/rbd_secret_uuid:
+    value: '457eb676-33da-42ec-9a8c-9293d545c337'
+  libvirt/images_type:
+    value: rbd
+  libvirt/images_rbd_pool:
+    value: vms
+  libvirt/images_rbd_ceph_conf:
+    value: '/etc/ceph/ceph.conf'
+  libvirt/rbd_user:
+    value: cinder
+  libvirt/rbd_secret_uuid:
+    value: '457eb676-33da-42ec-9a8c-9293d545c337'
+  libvirt/inject_password:
+    value: false
+  libvirt/inject_key:
+    value: false
+  libvirt/inject_partition:
+    value: -2
+  libvirt/live_migration_flag:
+    value: 'VIR_MIGRATE_UNDEFINE_SOURCE,VIR_MIGRATE_PEER2PEER,VIR_MIGRATE_LIVE,VIR_MIGRATE_PERSIST_DEST'
