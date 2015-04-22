@@ -5,6 +5,8 @@ node 'stack-compute.school.cloud.ba.infn.it' {
   $iptables = hiera('iptable_custom_rules')
   create_resources('firewall', $iptables)
   
+  $nova = hiera('nova_config')
+  create_resources('nova_config', $nova)
 
   
 $ceph_key_repo = "-----BEGIN PGP PUBLIC KEY BLOCK-----
