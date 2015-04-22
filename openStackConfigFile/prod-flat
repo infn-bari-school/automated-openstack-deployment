@@ -1,0 +1,5 @@
+openstack::neutron::type_drivers:
+  - gre
+  - flat
+openstack::neutron::bridge_mappings:
+  - 'public:br-cloudschool'
