@@ -7,6 +7,9 @@ node 'stack-compute.school.cloud.ba.infn.it' {
   
   $nova = hiera('nova_config')
   create_resources('nova_config', $nova)
+  
+  $key = hiera('ceph_key')
+  create_resources('ceph::key', $key)
 
   
 $ceph_key_repo = "-----BEGIN PGP PUBLIC KEY BLOCK-----
