@@ -4,7 +4,6 @@ default:
   - timezone
   - puppet::agent
 
-ntp::autoupdate: true
 ntp::enable: true
 ntp::servers:
   - ntp.cnaf.infn.it iburst
