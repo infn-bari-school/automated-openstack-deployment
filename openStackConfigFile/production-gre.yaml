@@ -1,4 +1,4 @@
-iptable_custom_rules:
+iptables_custom_rules:
   '9998 - Enable GRE traffic':
     proto: 'gre'
     action: 'accept'
