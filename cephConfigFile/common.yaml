@@ -32,39 +32,4 @@ cloud_school_hosts:
     host_aliases: ['ceph03']
 
 
-ceph_mon:
-  '%{::hostname}':
-    key: 'AQBxkvVU4F+VDBAArxUf+8s0LbxIxNrbyEC1kw=='
-ceph_key:
-  'client.admin':
-    secret: 'AQDgL/hUSC2kLBAAnWJaSiqJG+YMk+XV9sapnw=='
-    cap_mon: 'allow *'
-    cap_osd: 'allow *'
-    cap_mds: 'allow'
-    inject: true
-    inject_as_id: 'mon.'
-    inject_keyring: '/var/lib/ceph/mon/ceph-%{::hostname}/keyring'
-  'client.bootstrap-osd':
-    secret: 'AQDlL/hUUCpdFBAAZeo6mKj4yeKPmVKfUY5awA=='
-    cap_mon: 'allow profile bootstrap-osd'
-    keyring_path: '/var/lib/ceph/bootstrap-osd/ceph.keyring'
-    inject: true
-    inject_as_id: 'mon.'
-    inject_keyring: '/var/lib/ceph/mon/ceph-%{::hostname}/keyring'
-  'client.cinder':
-    secret: 'AQAvxQpVKJ03KxAADFv78tedrAWZx1SoRdsQUA=='
-    cap_mon: 'allow r'
-    cap_osd: 'allow class-read object_prefix rbd_children, allow rwx pool=cephPuppetDeployed, allow rwx pool=vms, allow rx pool=images'
-    mode: '644'
-    inject: true
-    inject_as_id: 'mon.'
-    inject_keyring: '/var/lib/ceph/mon/ceph-%{::hostname}/keyring'
 
-
-ceph_pools:
-  volumes:
-    pg_num: 30
-  images:
-    pg_num: 30
-  vms:
-    pg_num: 30
