@@ -1,4 +1,4 @@
-node 'ceph02.school.cloud.ba.infn.it' {
+node 'ceph02.cloud.ba.infn.it' {
 
 
   hiera_include('stack-ceph')
