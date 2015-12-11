@@ -8,16 +8,16 @@ openstack::region: 'recas_cloudschool'
 
 ######## Networks
 
-openstack::network::api: 172.20.0.0/16
-openstack::network::external: 172.20.0.0/16
-openstack::network::management: 172.20.0.0/16
-openstack::network::data: 172.20.0.0/16
-openstack::network::external::ippool::start: 172.20.10GROUP_NUMBER.10
-openstack::network::external::ippool::end: 172.20.10GROUP_NUMBER.30
-openstack::network::external::gateway: 172.20.0.1
+openstack::network::api: 172.30.40.0/24
+openstack::network::external: 172.30.40.0/24
+openstack::network::management: 172.30.40.0/24
+openstack::network::data: 172.30.40.0/24
+openstack::network::external::ippool::start: 172.30.40.250
+openstack::network::external::ippool::end: 172.30.40.254
+openstack::network::external::gateway: 172.30.40.1
 openstack::network::external::dns: 8.8.8.8
 openstack::network::neutron::enable_lb: 'True'
-openstack::config::network_management: 172.20.0.0/16
+openstack::config::network_management: 172.30.40.0/24
 
 ######## Private Neutron Network
 
